@@ -27,6 +27,12 @@ def annualized_return(series: pd.Series, periods_per_year: int = 365) -> float:
 
 
 def calculate_asset_metrics(group: pd.DataFrame) -> dict:
+    if group.empty:
+        raise ValueError("Cannot calculate metrics for an empty asset group.")
+    required = {"asset", "pair", "date", "close", "daily_return", "turnover_proxy_inr"}
+    missing = required - set(group.columns)
+    if missing:
+        raise ValueError(f"Missing metric columns: {sorted(missing)}")
     group = group.sort_values("date")
     prices = group["close"].astype(float)
     returns = group["daily_return"].dropna()
