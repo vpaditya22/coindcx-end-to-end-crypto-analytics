@@ -13,11 +13,12 @@ def max_drawdown(series: pd.Series) -> float:
 
 
 def annualized_return(series: pd.Series, periods_per_year: int = 365) -> float:
-    if len(series) < 2:
+    prices = pd.to_numeric(series, errors="coerce").dropna()
+    if len(prices) < 2 or periods_per_year <= 0 or (prices <= 0).any():
         return np.nan
 
-    total_return = series.iloc[-1] / series.iloc[0]
-    years = (len(series) - 1) / periods_per_year
+    total_return = prices.iloc[-1] / prices.iloc[0]
+    years = (len(prices) - 1) / periods_per_year
 
     if total_return <= 0 or years <= 0:
         return np.nan
