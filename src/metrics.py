@@ -3,8 +3,12 @@ import pandas as pd
 
 
 def max_drawdown(series: pd.Series) -> float:
-    running_max = series.cummax()
-    drawdown = series / running_max - 1
+    """Return the worst peak-to-trough drawdown for a positive price series."""
+    prices = pd.to_numeric(series, errors="coerce").dropna()
+    if prices.empty or (prices <= 0).any():
+        return np.nan
+    running_max = prices.cummax()
+    drawdown = prices / running_max - 1
     return float(drawdown.min())
 
 
