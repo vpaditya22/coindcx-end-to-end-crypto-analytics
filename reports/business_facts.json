@@ -1,0 +1,26 @@
+{
+  "company": "CoinDCX",
+  "period": "H1 2026",
+  "source_type": "official CoinDCX publication",
+  "facts": {
+    "reported_registered_users_h1_2026": "2.2 crore+",
+    "bitcoin_market_dominance_reported": "22.43%",
+    "meme_token_volume_share_reported": "12.17%",
+    "layer_1_volume_share_reported": "32.87%",
+    "average_investor_age_reported": "30-31",
+    "core_assets_mentioned": ["Bitcoin", "Ethereum", "Solana", "XRP"]
+  },
+  "annual_report_2025_facts": {
+    "total_spot_trading_volume_inr_crore": 51333,
+    "average_monthly_trading_volume_inr_crore": 4277.75,
+    "sips_created": 572000,
+    "sip_holder_growth_percent": 623,
+    "earn_users": 329000,
+    "verified_users": "2+ crore"
+  },
+  "source_urls": {
+    "h1_2026_report": "https://coindcx.com/blog/announcements/coindcx-h1-2026-report/",
+    "annual_report": "https://coindcx.com/blog/wp-content/uploads/2025/12/CoinDCX-AR-25-Single-Final-mailing-2.pdf",
+    "api_docs": "https://docs.coindcx.com/"
+  }
+}
