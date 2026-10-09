@@ -66,5 +66,15 @@ def build_metrics(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_correlation(df: pd.DataFrame) -> pd.DataFrame:
+    required = {"date", "asset", "daily_return"}
+    missing = required - set(df.columns)
+    if missing:
+        raise ValueError(f"Missing correlation columns: {sorted(missing)}")
+    if df.empty:
+        return pd.DataFrame()
+    # Pivot requires unique date/asset keys. Fail clearly rather than silently
+    # aggregating duplicate observations and changing the statistical meaning.
+    if df.duplicated(["date", "asset"]).any():
+        raise ValueError("Duplicate date/asset rows found; clean the data before correlation.")
     pivot = df.pivot(index="date", columns="asset", values="daily_return")
-    return pivot.corr()
+    return pivot.corr(min_periods=2)
