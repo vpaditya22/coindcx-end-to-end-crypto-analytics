@@ -49,8 +49,9 @@ def test_cleaner_removes_non_finite_rows_and_reports_counts(tmp_path, monkeypatc
 
     result = pd.read_csv(processed_dir / "daily_candles_clean.csv")
     assert result["asset"].tolist() == ["BTC"]
-    assert "input_rows: 3" in capsys.readouterr().out
-    assert "rows_removed: 2" in capsys.readouterr().out
+    output = capsys.readouterr().out
+    assert "input_rows: 3" in output
+    assert "rows_removed: 2" in output
 
 
 def test_cleaner_fails_when_no_valid_rows_remain(tmp_path, monkeypatch):
